@@ -6,12 +6,19 @@ class Computer < Player
     super
   end
   
-  def pick_code(colors, pegs)
-    pegs.times do 
-      @secret_code.push(colors[rand(colors.size)])
+  def pick_code(mastermind)
+    mastermind.pegs.times do 
+      @secret_code.push(mastermind.colors[rand(mastermind.colors.size)])
     end
-    @secret_code
+    mastermind.secret_code=@secret_code
   end 
   
-
+  def play_round(mastermind_instance)
+    current_round = 1
+    until current_round >= rounds
+      
+      current_round += 1
+    end
+  end
+  
 end

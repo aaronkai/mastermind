@@ -6,17 +6,31 @@ class Human < Player
     super
   end
   
-  def pick_code(colors, pegs)
-    pegs.times do 
-      puts "Please choose one of the following colors: #{colors.join(" ")}"
+  def pick_code(mastermind)
+    mastermind_instance.pegs.times do 
+      puts "Please choose one of the following colors: #{mastermind.colors.join(" ")}"
       choice = gets.chomp.downcase
-      @secret_code.push(choice)
+      mastermind.secret_code.push(choice)
     end 
-    @secret_code
   end
   
-  def crack_code(code, rounds)
-    
+  def play_round(mastermind)
+    mastermind.pegs.times do |peg|
+      selection = ""
+      until mastermind.colors.include?(selection)
+        puts "Make a choice for Peg #{peg+1}"
+        puts "Color choices are #{mastermind.colors.join(" ")}"
+        selection = gets.chomp.downcase
+        if mastermind.colors.include?(selection)  
+          puts "Valid Choice. \n"
+          guess.push(selection)
+        else
+          puts "invalid choice. \n"
+        end
+      end
+    end
+    puts guess
+  mastermind.guesses.push(guess)
   end
   
 end
